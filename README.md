@@ -1,2 +1,2 @@
-# plugin-ali-ecs
-Plugin for Collecting AliCloud ECS (Compute)
+# plugin-alibaba-cloud-ecs
+Plugin for Alibaba Cloud ECS
