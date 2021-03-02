@@ -23,8 +23,8 @@ class CollectorManager(BaseManager):
     def verify(self, secret_data, region_name):
         """ Check connection
         """
-        ec2_connector = self.locator.get_connector('EC2Connector')
-        r = ec2_connector.verify(secret_data, region_name)
+        ecs_connector = self.locator.get_connector('ECSConnector')
+        r = ecs_connector.verify(secret_data, region_name)
         # ACTIVE/UNKNOWN
         return r
 
@@ -59,7 +59,7 @@ class CollectorManager(BaseManager):
     def list_cloud_service_types():
         cloud_service_type = {
             'tags': {
-                'spaceone:icon': 'https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/aws-ec2.svg',
+                'spaceone:icon': '',
             }
         }
         return [CloudServiceType(cloud_service_type, strict=False)]
@@ -68,6 +68,7 @@ class CollectorManager(BaseManager):
     def get_region_from_result(result):
         REGION_INFO = {
             # TODO: Fill-out region info
+            # SAMPLE
             'us-east-1': {'name': 'US East (N. Virginia)', 'tags': {'latitude': '39.028760', 'longitude': '-77.458263'}},
         }
 
