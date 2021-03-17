@@ -1,5 +1,5 @@
 from schematics import Model
-from schematics.types import  StringType, DateTimeType, ListType, BooleanType, ModelType, DictType
+from schematics.types import StringType, DateTimeType, ListType, ModelType, DictType
 
 
 class ComputeTags(Model):
@@ -9,12 +9,15 @@ class ComputeTags(Model):
 class Compute(Model):
     keypair = StringType()
     az = StringType()
-    instance_state = StringType(choices=('PENDING', 'RUNNING', 'SHUTTING-DOWN', 'TERMINATED', 'STOPPING', 'STOPPED'))
+    instance_state = StringType(
+        choices=("PENDING", "RUNNING", "STARTING", "STOPPING", "STOPPED")
+    )
     instance_type = StringType()
     launched_at = DateTimeType()
-    instance_id = StringType(default='')
-    instance_name = StringType(default='')
-    security_groups = ListType(DictType(StringType()))
+    instance_id = StringType(default="")
+    instance_name = StringType(default="")
+    security_groups = ListType(StringType())
+    region_name = StringType()
     image = StringType()
     account = StringType()
     tags = ModelType(ComputeTags, default={})

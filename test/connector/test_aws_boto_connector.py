@@ -9,12 +9,12 @@ from spaceone.core import config
 from spaceone.core import utils
 from spaceone.core.transaction import Transaction
 
-from spaceone.inventory.connector.ecs_connector import EC2Connector
+from spaceone.inventory.connector.ecs_connector import ECSConnector
 
 AKI = os.environ.get('AWS_ACCESS_KEY_ID', None)
 SAK = os.environ.get('AWS_SECRET_ACCESS_KEY', None)
 ROLE_ARN = os.environ.get('ROLE_ARN', None)
-DEFAULT_REGION = 'ap-northeast-2'
+DEFAULT_REGION = 'us-east-1'
 
 
 if AKI == None or SAK == None:
@@ -40,7 +40,7 @@ class TestAWSBotoConnector(unittest.TestCase):
         secret = cls.get_secret()
         region = cls.get_region()
 
-        cls.ec2_connector = EC2Connector(Transaction(), {})
+        cls.ec2_connector = ECSConnector(Transaction(), {})
         print('SET CLIENT')
         cls.ec2_connector.set_client(secret, region)
 

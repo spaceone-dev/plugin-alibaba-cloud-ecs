@@ -4,10 +4,10 @@ import unittest
 from spaceone.core.unittest.runner import RichTestRunner
 from spaceone.tester import TestCase, print_json
 
-AKI = os.environ.get('AWS_ACCESS_KEY_ID', None)
-SAK = os.environ.get('AWS_SECRET_ACCESS_KEY', None)
+AKI = os.environ.get('ALIYUN_ACCESS_KEY_ID', None)
+AKS = os.environ.get('ALIYUN_ACCESS_KEY_SECRET', None)
 
-if AKI == None or SAK == None:
+if AKI == None or AKS == None:
     print("""
 ##################################################
 # ERROR 
@@ -16,11 +16,12 @@ if AKI == None or SAK == None:
 ##################################################
 example)
 
-export AWS_ACCESS_KEY_ID=<YOUR_AWS_ACCESS_KEY_ID>
-export AWS_SECRET_ACCESS_KEY=<YOUR_AWS_SECRET_ACCESS_KEY>
+export ALI_ACCESS_KEY_ID=<YOUR_ALI_ACCESS_KEY_ID>
+export ALI_ACCESS_KEY_SECRET=<YOUR_ALI_ACCESS_KEY_SECRET>
 
 """)
     exit
+
 
 class TestCollector(TestCase):
 
@@ -32,8 +33,8 @@ class TestCollector(TestCase):
         options = {
         }
         secret_data = {
-            'aws_access_key_id': AKI,
-            'aws_secret_access_key': SAK
+            'aliyun_access_key_id': AKI,
+            'aliyun_access_key_secret': AKS
         }
         v_info = self.inventory.Collector.verify({'options': options, 'secret_data': secret_data})
         print_json(v_info)
@@ -41,8 +42,9 @@ class TestCollector(TestCase):
     def test_collect(self):
         options = {}
         secret_data = {
-            'aws_access_key_id': AKI,
-            'aws_secret_access_key': SAK,
+            'aliyun_access_key_id': AKI,
+            'aliyun_access_key_secret': AKS,
+            # 'region_name': "us-east-1"
         }
         filter = {}
         resource_stream = self.inventory.Collector.collect({'options': options, 'secret_data': secret_data,

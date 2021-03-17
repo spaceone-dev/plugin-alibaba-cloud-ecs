@@ -1,21 +1,8 @@
-CONNECTORS = {
-}
+CONNECTORS = {}
 
-LOG = {
-    'filters': {
-        'masking': {
-            'rules': {
-                'Collector.collect': [
-                    'secret_data'
-                ]
-            }
-        }
-    }
-}
+LOG = {"filters": {"masking": {"rules": {"Collector.collect": ["secret_data"]}}}}
 
 
-HANDLERS = {
-}
+HANDLERS = {}
 
-ENDPOINTS = {
-}
+ENDPOINTS = {}

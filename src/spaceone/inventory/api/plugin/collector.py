@@ -16,28 +16,28 @@ class Collector(BaseAPI, collector_pb2_grpc.CollectorServicer):
     def init(self, request, context):
         params, metadata = self.parse_request(request, context)
 
-        with self.locator.get_service('CollectorService', metadata) as collector_svc:
+        with self.locator.get_service("CollectorService", metadata) as collector_svc:
             data = collector_svc.init(params)
-            return self.locator.get_info('PluginInfo', data)
+            return self.locator.get_info("PluginInfo", data)
 
     def verify(self, request, context):
         params, metadata = self.parse_request(request, context)
 
-        with self.locator.get_service('CollectorService', metadata) as collector_svc:
+        with self.locator.get_service("CollectorService", metadata) as collector_svc:
             collector_svc.verify(params)
-            return self.locator.get_info('EmptyInfo')
+            return self.locator.get_info("EmptyInfo")
 
     def collect(self, request, context):
         params, metadata = self.parse_request(request, context)
 
-        with self.locator.get_service('CollectorService', metadata) as collector_svc:
+        with self.locator.get_service("CollectorService", metadata) as collector_svc:
             for resource, resource_format in collector_svc.list_resources(params):
                 res = {
-                    'state': 'SUCCESS',
-                    'message': '',
-                    'resource_type': resource_format['resource_type'],
-                    'match_rules': change_struct_type(resource_format['match_rules']),
-                    'resource': change_struct_type(resource.to_primitive())
+                    "state": "SUCCESS",
+                    "message": "",
+                    "resource_type": resource_format["resource_type"],
+                    "match_rules": change_struct_type(resource_format["match_rules"]),
+                    "resource": change_struct_type(resource.to_primitive()),
                 }
 
-                yield self.locator.get_info('ResourceInfo', res)
+                yield self.locator.get_info("ResourceInfo", res)

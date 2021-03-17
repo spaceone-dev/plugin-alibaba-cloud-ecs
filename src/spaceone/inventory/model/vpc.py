@@ -3,7 +3,6 @@ from schematics.types import StringType
 
 
 class VPC(Model):
-    vpc_arn = StringType()
-    vpc_id = StringType()
-    cidr = StringType()
-    vpc_name = StringType(default="")
+    vpc_id = StringType(deserialize_from="VpcId")
+    cidr = StringType(deserialize_from="CidrBlock")
+    vpc_name = StringType(deserialize_from="VpcName")
