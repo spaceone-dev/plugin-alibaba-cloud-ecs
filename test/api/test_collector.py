@@ -4,8 +4,8 @@ import unittest
 from spaceone.core.unittest.runner import RichTestRunner
 from spaceone.tester import TestCase, print_json
 
-AKI = os.environ.get('ALIYUN_ACCESS_KEY_ID', None)
-AKS = os.environ.get('ALIYUN_ACCESS_KEY_SECRET', None)
+AKI = os.environ.get('ALI_ACCESS_KEY_ID', None)
+AKS = os.environ.get('ALI_ACCESS_KEY_SECRET', None)
 
 if AKI == None or AKS == None:
     print("""
