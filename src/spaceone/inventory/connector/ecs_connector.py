@@ -58,10 +58,10 @@ class ECSConnector(BaseConnector):
         return "ACTIVE" if response is not None else "UNKNOWN"
 
     def set_client(self, secret_data, region_name):
-        alibaba_cloud_access_key_id = secret_data["alibaba_cloud_access_key_id"].strip()
-        alibaba_cloud_access_key_secret = secret_data["alibaba_cloud_access_key_secret"].strip()
+        ali_access_key_id = secret_data["ali_access_key_id"].strip()
+        ali_access_key_secret = secret_data["ali_access_key_secret"].strip()
         self.ecs_client = client.AcsClient(
-            alibaba_cloud_access_key_id, alibaba_cloud_access_key_secret, region_name
+            ali_access_key_id, ali_access_key_secret, region_name
         )
 
     def _send_request(self, request):

@@ -33,8 +33,8 @@ class TestCollector(TestCase):
         options = {
         }
         secret_data = {
-            'alibaba_cloud_access_key_id': AKI,
-            'alibaba_cloud_access_key_secret': AKS
+            'ali_access_key_id': AKI,
+            'ali_access_key_secret': AKS
         }
         v_info = self.inventory.Collector.verify({'options': options, 'secret_data': secret_data})
         print_json(v_info)
@@ -42,15 +42,12 @@ class TestCollector(TestCase):
     def test_collect(self):
         options = {}
         secret_data = {
-            'alibaba_cloud_access_key_id': AKI,
-            'alibaba_cloud_access_key_secret': AKS,
-            # 'region_name': "us-east-1"
+            'ali_access_key_id': AKI,
+            'ali_access_key_secret': AKS,
         }
         filter = {}
         resource_stream = self.inventory.Collector.collect({'options': options, 'secret_data': secret_data,
                                                             'filter': filter})
-        # print(resource_stream)
-
         for res in resource_stream:
             print_json(res)
 
