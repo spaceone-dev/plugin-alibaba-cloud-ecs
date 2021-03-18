@@ -12,7 +12,7 @@ if AKI == None or AKS == None:
 ##################################################
 # ERROR 
 #
-# Configure your AWS credential first for test
+# Configure your Alibaba Cloud credential first for test
 ##################################################
 example)
 
@@ -33,8 +33,8 @@ class TestCollector(TestCase):
         options = {
         }
         secret_data = {
-            'aliyun_access_key_id': AKI,
-            'aliyun_access_key_secret': AKS
+            'alibaba_cloud_access_key_id': AKI,
+            'alibaba_cloud_access_key_secret': AKS
         }
         v_info = self.inventory.Collector.verify({'options': options, 'secret_data': secret_data})
         print_json(v_info)
@@ -42,8 +42,8 @@ class TestCollector(TestCase):
     def test_collect(self):
         options = {}
         secret_data = {
-            'aliyun_access_key_id': AKI,
-            'aliyun_access_key_secret': AKS,
+            'alibaba_cloud_access_key_id': AKI,
+            'alibaba_cloud_access_key_secret': AKS,
             # 'region_name': "us-east-1"
         }
         filter = {}
