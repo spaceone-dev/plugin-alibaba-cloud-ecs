@@ -1,5 +1,5 @@
 # plugin-alibaba-cloud-ecs
-![Alibaba Cloud ECS]("https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/alibaba_cloud/logo.svg")
+![Alibaba Cloud ECS](https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/alibaba_cloud/logo.svg)
 **Plugin for Alibaba Cloud ECS instances**
 
 > SpaceONE's [plugin-alibaba-cloud-ecs](https://github.com/spaceone-dev/plugin-alibaba-cloud-ecs) is a convenient tool to 
@@ -14,7 +14,7 @@ Please contact us if you need any further information. (<support@spaceone.dev>)
 ---
 
 ## Authentication Overview
-Registered service account on SpaceONE must have certain permissions to collect cloud service data 
+Registered service account on SpaceONE must have certain permissions to collect cloud service data.<br/>
 Please, set authentication privilege for followings:
 
 #### [ECS](https://www.alibabacloud.com/help/doc-detail/25484.htm?spm=a2c63.p38356.b99.665.5fe944a8DuRPnT)
