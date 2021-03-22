@@ -82,13 +82,15 @@ class CollectorManager(BaseManager):
             for instance in instances:
                 instance_id = instance.get("InstanceId")
                 public_ips = instance.get("PublicIpAddress", {}).get("IpAddress", [])
+                eip = instance.get("EipAddress", {}).get("IpAddress", "")
+                print(f"!!!!!!!!!public: {public_ips} EIP:{eip}")
                 instance_ip, nic_ids = self.get_network_info(
                     instance.get("NetworkInterfaces", {}).get("NetworkInterface", [])
                 )
                 sg_ids = instance.get("SecurityGroupIds", {}).get("SecurityGroupId", [])
                 vpc_id = instance.get("VpcAttributes", {}).get("VpcId", "")
                 vswitch_id = instance.get("VpcAttributes", {}).get("VSwitchId", "")
-                server_data = ins_manager.get_server_info(instance)
+                server_data = ins_manager.get_server_info(instance, self.get_primary_public_ip(public_ips, eip))
                 scaling_group_vo = asg_manager.get_scaling_info(
                     instance_id, scaling_groups, scaling_instances
                 )
@@ -183,6 +185,14 @@ class CollectorManager(BaseManager):
                 instance_ip = nic.get("PrimaryIpAddress", "")
             nic_ids.append(nic.get("NetworkInterfaceId", ""))
         return instance_ip, nic_ids
+
+    @staticmethod
+    def get_primary_public_ip(public_ips, eip):
+        if eip:
+            return eip
+        if len(public_ips) > 0:
+            return public_ips[0]
+        return None
 
     @staticmethod
     def merge_ip_addresses(nics, public_ips):
