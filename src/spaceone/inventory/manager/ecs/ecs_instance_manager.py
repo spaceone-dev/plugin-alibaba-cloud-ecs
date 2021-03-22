@@ -143,7 +143,6 @@ class ECSInstanceManager(BaseManager):
 
     @staticmethod
     def get_compute_data(instance, primary_public_ip):
-        print(f"!!^^^!!!!{primary_public_ip}")
         compute_data = {
             "keypair": instance.get("KeyPairName", ""),
             "az": instance.get("ZoneId", ""),
@@ -164,7 +163,6 @@ class ECSInstanceManager(BaseManager):
                     "primary_public_ip": primary_public_ip
                 }
             })
-            pprint(compute_data)
         return Compute(compute_data, strict=False)
 
     @staticmethod

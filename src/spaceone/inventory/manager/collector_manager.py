@@ -83,7 +83,6 @@ class CollectorManager(BaseManager):
                 instance_id = instance.get("InstanceId")
                 public_ips = instance.get("PublicIpAddress", {}).get("IpAddress", [])
                 eip = instance.get("EipAddress", {}).get("IpAddress", "")
-                print(f"!!!!!!!!!public: {public_ips} EIP:{eip}")
                 instance_ip, nic_ids = self.get_network_info(
                     instance.get("NetworkInterfaces", {}).get("NetworkInterface", [])
                 )
