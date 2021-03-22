@@ -1,5 +1,5 @@
 # plugin-alibaba-cloud-ecs
-![Alibaba Cloud ECS]("https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/alibaba_cloud/logo.svg")
+![Alibaba Cloud ECS](https://spaceone-custom-assets.s3.ap-northeast-2.amazonaws.com/console-assets/icons/cloud-services/alibaba_cloud/logo.svg)
 **Plugin for Alibaba Cloud ECS instances**
 
 > SpaceONE's [plugin-alibaba-cloud-ecs](https://github.com/spaceone-dev/plugin-alibaba-cloud-ecs) is a convenient tool to 
