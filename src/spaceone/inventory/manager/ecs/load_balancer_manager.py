@@ -1,5 +1,3 @@
-from pprint import pprint
-
 from spaceone.core.manager import BaseManager
 
 from spaceone.inventory.connector import ECSConnector

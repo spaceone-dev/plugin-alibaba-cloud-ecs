@@ -32,11 +32,7 @@ ecs_instance = ItemDynamicLayout.set_fields(
         TextDyField.data_source("Instance Type", "data.compute.instance_type"),
         TextDyField.data_source("Resource Group", "data.aliyun.resource_group_id"),
         TextDyField.data_source("Availability Zone", "data.compute.az"),
-        ListDyField.data_source(
-            "Public IP",
-            "data.nics.public_ip_address",
-            options={'delimiter': '<br>'}
-        ),
+        TextDyField.data_source("Public IP", "data.nics.public_ip_address"),
         ListDyField.data_source(
             "IP Addresses",
             "ip_addresses",
@@ -65,17 +61,15 @@ vpc = ItemDynamicLayout.set_fields(
 )
 
 scaling_group = ItemDynamicLayout.set_fields(
-    "Auto Scaler",
+    "Scaling Groups",
+    root_path="scaling_group",
     fields=[
-        TextDyField.data_source("Scaling Group Name", "data.scaling_group.name"),
-        TextDyField.data_source("Scaling Group ID", "data.scaling_group.id"),
+        TextDyField.data_source("Scaling Group Name", "name"),
+        TextDyField.data_source("Scaling Group ID", "id"),
         TextDyField.data_source(
-            "Auto Scaling Configuration ID", "data.scaling_group.instance_group.name"
+            "Auto Scaling Configuration ID", "active_scaling_configuration_id"
         ),
-        TextDyField.data_source(
-            "Instance Template ID",
-            "data.scaling_group.instance_group.instance_template_name",
-        ),
+        TextDyField.data_source("Launch Template ID", "launch_template.id"),
     ],
 )
 
@@ -91,7 +85,7 @@ disk = TableDynamicLayout.set_fields(
         TextDyField.data_source("Name", "device"),
         SizeField.data_source("Size(GB)", "size"),
         TextDyField.data_source("Disk ID", "tags.disk_id"),
-        TextDyField.data_source("Disk Type", "tags.disk_type"),
+        TextDyField.data_source("Disk Type", "disk_type"),
         TextDyField.data_source("Read IOPS", "tags.read_iops"),
         TextDyField.data_source("Write IOPS", "tags.write_iops"),
         EnumDyField.data_source(
