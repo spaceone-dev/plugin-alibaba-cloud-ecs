@@ -3,7 +3,7 @@ from schematics.types import StringType, DateTimeType, ListType, ModelType, Dict
 
 
 class ComputeTags(Model):
-    pass
+    primary_public_ip = StringType(serialize_when_none=False)
 
 
 class Compute(Model):

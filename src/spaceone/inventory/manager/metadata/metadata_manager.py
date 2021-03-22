@@ -15,7 +15,7 @@ from spaceone.inventory.model.metadata.metadata_dynamic_layout import (
 )
 
 ecs_instance = ItemDynamicLayout.set_fields(
-    "VM Instance",
+    "ECS Instance",
     fields=[
         TextDyField.data_source("Instance ID", "data.compute.instance_id"),
         TextDyField.data_source("Instance Name", "data.compute.instance_name"),
@@ -32,7 +32,7 @@ ecs_instance = ItemDynamicLayout.set_fields(
         TextDyField.data_source("Instance Type", "data.compute.instance_type"),
         TextDyField.data_source("Resource Group", "data.aliyun.resource_group_id"),
         TextDyField.data_source("Availability Zone", "data.compute.az"),
-        TextDyField.data_source("Public IP", "data.nics.public_ip_address"),
+        TextDyField.data_source("Public IP", "data.compute.tags.primary_public_ip"),
         ListDyField.data_source(
             "IP Addresses",
             "ip_addresses",
@@ -61,15 +61,14 @@ vpc = ItemDynamicLayout.set_fields(
 )
 
 scaling_group = ItemDynamicLayout.set_fields(
-    "Scaling Groups",
-    root_path="scaling_group",
+    "Scaling Group",
     fields=[
-        TextDyField.data_source("Scaling Group Name", "name"),
-        TextDyField.data_source("Scaling Group ID", "id"),
+        TextDyField.data_source("Scaling Group Name", "data.scaling_group.name"),
+        TextDyField.data_source("Scaling Group ID", "data.scaling_group.id"),
         TextDyField.data_source(
-            "Auto Scaling Configuration ID", "active_scaling_configuration_id"
+            "Auto Scaling Configuration ID", "data.scaling_group.active_scaling_configuration_id"
         ),
-        TextDyField.data_source("Launch Template ID", "launch_template.id"),
+        TextDyField.data_source("Launch Template ID", "data.scaling_group.launch_template.id"),
     ],
 )
 
