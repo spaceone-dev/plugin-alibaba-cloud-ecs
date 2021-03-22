@@ -38,7 +38,7 @@ class ServerData(Model):
     load_balancer = ListType(ModelType(LoadBalancer))
     vpc = ModelType(VPC)
     subnet = ModelType(Subnet)
-    auto_scaling_group = ModelType(ScalingGroup, serialize_when_none=False)
+    scaling_group = ModelType(ScalingGroup, serialize_when_none=False)
 
 
 class Server(Model):

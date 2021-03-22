@@ -10,5 +10,5 @@ class LaunchTemplate(Model):
 class ScalingGroup(Model):
     id = StringType()
     name = StringType()
-    active_scaling_configuration = StringType(serialize_when_none=False)
+    active_scaling_configuration_id = StringType(serialize_when_none=False)
     launch_template = ModelType(LaunchTemplate, serialize_when_none=False)
