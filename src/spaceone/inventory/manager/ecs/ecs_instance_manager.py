@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from spaceone.core.manager import BaseManager
 
 from spaceone.inventory.connector.ecs_connector import ECSConnector
@@ -13,7 +15,7 @@ class ECSInstanceManager(BaseManager):
         self.params = params
         self.ecs_connector: ECSConnector = ecs_connector
 
-    def get_server_info(self, instance):
+    def get_server_info(self, instance, primary_public_ip):
         """
         server_data = {
             "os_type": "LINUX" | "WINDOWS"
@@ -74,7 +76,7 @@ class ECSInstanceManager(BaseManager):
         os_data = self.get_os_data(instance.get("OSNameEn", ""), instance.get("OSType"))
         aliyun_data = self.get_aliyun_data(instance)
         hardware_data = self.get_hardware_data(instance)
-        compute_data = self.get_compute_data(instance)
+        compute_data = self.get_compute_data(instance, primary_public_ip)
 
         server_dic.update(
             {
@@ -139,7 +141,8 @@ class ECSInstanceManager(BaseManager):
 
         return Hardware(hardware_data, strict=False)
 
-    def get_compute_data(self, instance):
+    @staticmethod
+    def get_compute_data(instance, primary_public_ip):
         compute_data = {
             "keypair": instance.get("KeyPairName", ""),
             "az": instance.get("ZoneId", ""),
@@ -152,8 +155,14 @@ class ECSInstanceManager(BaseManager):
             "security_groups": instance.get("SecurityGroupIds", {}).get(
                 "SecurityGroupId", []
             ),
-            "image": instance.get("ImageId"),
+            "image": instance.get("ImageId")
         }
+        if primary_public_ip:
+            compute_data.update({
+                "tags": {
+                    "primary_public_ip": primary_public_ip
+                }
+            })
         return Compute(compute_data, strict=False)
 
     @staticmethod

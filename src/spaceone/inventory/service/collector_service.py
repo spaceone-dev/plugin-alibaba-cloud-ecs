@@ -135,9 +135,6 @@ class CollectorService(BaseService):
 
         for cloud_service_type in self.collector_manager.list_cloud_service_types():
             yield cloud_service_type, cloud_service_type_resource_format
-        resources = dict()
-        for mp_param in mp_params:
-            resources = self.collector_manager.list_resources(mp_param)
 
         with concurrent.futures.ThreadPoolExecutor(
                 max_workers=NUMBER_OF_CONCURRENT
