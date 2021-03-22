@@ -1,4 +1,3 @@
-from pprint import pprint
 
 from spaceone.core.manager import BaseManager
 
@@ -54,7 +53,6 @@ class ScalingGroupManager(BaseManager):
                         )
                     }
                 )
-            pprint(scaling_group_data)
             return ScalingGroup(scaling_group_data, strict=False)
         else:
             return None

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+import concurrent.futures
 import logging
 import time
-from pprint import pprint
-import concurrent.futures
+
 from spaceone.core.service import *
 
 from spaceone.inventory.manager.collector_manager import CollectorManager
@@ -140,7 +140,7 @@ class CollectorService(BaseService):
             resources = self.collector_manager.list_resources(mp_param)
 
         with concurrent.futures.ThreadPoolExecutor(
-            max_workers=NUMBER_OF_CONCURRENT
+                max_workers=NUMBER_OF_CONCURRENT
         ) as executor:
             future_executors = []
             for mp_param in mp_params:
