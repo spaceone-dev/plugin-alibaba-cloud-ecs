@@ -159,14 +159,14 @@ class ECSConnector(BaseConnector):
             disks.extend(response.get("Disks", {}).get("Disk", []))
         return disks
 
-    def list_images(self, **params):
-        images = []
-        request = DescribeImagesRequest()
-        request._params = params
-        response = self._send_request(request)
-        if response :
-            images.extend(response.get("Images", {}).get("Image", []))
-        return images
+    # def list_images(self, **params):
+    #     images = []
+    #     request = DescribeImagesRequest()
+    #     request._params = params
+    #     response = self._send_request(request)
+    #     if response :
+    #         images.extend(response.get("Images", {}).get("Image", []))
+    #     return images
 
     def list_vpcs(self, **params):
         vpcs = []
